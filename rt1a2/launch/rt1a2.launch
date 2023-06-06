@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+
+    <param name="publish_speed" value= "2" />
+
+    <include file="$(find assignment_2_2022)/launch/assignment1.launch" />
+
+    <node pkg="rt1a2" type="a_target_status.py" name="a_target_status" launch-prefix="gnome-terminal --command" />
+    <node pkg="rt1a2" type="b_goal_status.py" name="b_goal_status" launch-prefix="gnome-terminal --command" />
+    <node pkg="rt1a2" type="c_robot_subscriber.py" name="c_robot_subscriber" launch-prefix="gnome-terminal --command" />    
+</launch>

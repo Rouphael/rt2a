@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to rt1a2’s documentation! &mdash; rt1a2 v 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            rt1a2
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Welcome to rt1a2’s documentation!</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a><ul>
+<li><a class="reference internal" href="#research-track1-second-assignment-s-documentation">Research_Track1-second_assignment’s documentation!</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-scripts.a_target_status">a_target_status Module</a></li>
+<li><a class="reference internal" href="#module-scripts.b_goal_status">b_goal_status Module</a></li>
+<li><a class="reference internal" href="#module-scripts.c_robot_subscriber">c_robot_subscriber Module</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">rt1a2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Welcome to rt1a2’s documentation!</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="welcome-to-rt1a2-s-documentation">
+<h1>Welcome to rt1a2’s documentation!<a class="headerlink" href="#welcome-to-rt1a2-s-documentation" title="Permalink to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+<section id="research-track1-second-assignment-s-documentation">
+<h2>Research_Track1-second_assignment’s documentation!<a class="headerlink" href="#research-track1-second-assignment-s-documentation" title="Permalink to this heading"></a></h2>
+<p>This is the documentation of the Research_Track1-second_assignment’s package!</p>
+</section>
+</section>
+<section id="module-scripts.a_target_status">
+<span id="a-target-status-module"></span><h1>a_target_status Module<a class="headerlink" href="#module-scripts.a_target_status" title="Permalink to this heading"></a></h1>
+<span class="target" id="module-a_target_status"></span><p>This module provides a user interface for sending goals to an action server using the SimpleActionClient. The user can choose to send a target position goal to the server or cancel an ongoing goal.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="scripts.a_target_status.callback">
+<span class="sig-prename descclassname"><span class="pre">scripts.a_target_status.</span></span><span class="sig-name descname"><span class="pre">callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/a_target_status.html#callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.a_target_status.callback" title="Permalink to this definition"></a></dt>
+<dd><p>Callback function for the subscriber.
+It pulls the data from the topic /odom and publishes it as a custom message.
+:param data: Data from the topic /odom.
+:type data: Odometry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scripts.a_target_status.cancel_target">
+<span class="sig-prename descclassname"><span class="pre">scripts.a_target_status.</span></span><span class="sig-name descname"><span class="pre">cancel_target</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/a_target_status.html#cancel_target"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.a_target_status.cancel_target" title="Permalink to this definition"></a></dt>
+<dd><p>Cancel the target for the robot (action client).
+It sends a cancel request to the action server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scripts.a_target_status.error">
+<span class="sig-prename descclassname"><span class="pre">scripts.a_target_status.</span></span><span class="sig-name descname"><span class="pre">error</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/a_target_status.html#error"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.a_target_status.error" title="Permalink to this definition"></a></dt>
+<dd><p>Error function.
+It prints an error message if the user input is not acceptable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scripts.a_target_status.set_target">
+<span class="sig-prename descclassname"><span class="pre">scripts.a_target_status.</span></span><span class="sig-name descname"><span class="pre">set_target</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/a_target_status.html#set_target"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.a_target_status.set_target" title="Permalink to this definition"></a></dt>
+<dd><p>Set the target for the robot (action client).
+It sends user input target (x, y) to the action server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-scripts.b_goal_status">
+<span id="b-goal-status-module"></span><h1>b_goal_status Module<a class="headerlink" href="#module-scripts.b_goal_status" title="Permalink to this heading"></a></h1>
+<span class="target" id="module-b_goal_status"></span><p>This script implements a service node that, when called, prints the number of goals reached and canceled. It also includes a subscriber to monitor goal status.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="scripts.b_goal_status.service_callback">
+<span class="sig-prename descclassname"><span class="pre">scripts.b_goal_status.</span></span><span class="sig-name descname"><span class="pre">service_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">req</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/b_goal_status.html#service_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.b_goal_status.service_callback" title="Permalink to this definition"></a></dt>
+<dd><p>Callback function for the service server that prints the number of goals reached and canceled.
+:param req: The request object sent to the service server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An EmptyResponse object.</p>
+</dd>
+</dl>
+<p>This function is called when the service is called. It prints the current sequence number,the number of goals reached, and the number of goals canceled. It then increments the sequence number.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scripts.b_goal_status.subscriber_callback">
+<span class="sig-prename descclassname"><span class="pre">scripts.b_goal_status.</span></span><span class="sig-name descname"><span class="pre">subscriber_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/b_goal_status.html#subscriber_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.b_goal_status.subscriber_callback" title="Permalink to this definition"></a></dt>
+<dd><p>Callback function for the service server that increments the number of goals reached or canceled when a goal is reached or canceled.
+:param data: The message received.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None.</p>
+</dd>
+</dl>
+<p>This function is called when a message is received. If the goal status is ‘canceled’ (status=2), it increments the number of goals canceled. If the goal status is ‘reached’ (status=3), it increments the number of goals reached.</p>
+</dd></dl>
+
+</section>
+<section id="module-scripts.c_robot_subscriber">
+<span id="c-robot-subscriber-module"></span><h1>c_robot_subscriber Module<a class="headerlink" href="#module-scripts.c_robot_subscriber" title="Permalink to this heading"></a></h1>
+<span class="target" id="module-c_subscriber"></span><p>This script implements a service node that, when called, prints the number of goals reached and canceled. It also includes a subscriber to monitor goal status.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="scripts.c_robot_subscriber.callback_subscriber">
+<span class="sig-prename descclassname"><span class="pre">scripts.c_robot_subscriber.</span></span><span class="sig-name descname"><span class="pre">callback_subscriber</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/c_robot_subscriber.html#callback_subscriber"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.c_robot_subscriber.callback_subscriber" title="Permalink to this definition"></a></dt>
+<dd><p>Callback function for the subscriber that prints the distance of the robot from the target and the robot’s average speed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> – The message received.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None.</p>
+</dd>
+</dl>
+<p>This function is called when a message is received. It calculates the distance of the robot from the target using the Pythagorean theorem and updates the global variable ‘goal_distance’. It also calculates the robot’s speed using the Pythagorean theorem and updates the ‘speed_data’ list. The average speed is then calculated by summing all the elements in the list and dividing by 10. Finally, it calls the ‘menu’ function to print the distance and average speed.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scripts.c_robot_subscriber.menu">
+<span class="sig-prename descclassname"><span class="pre">scripts.c_robot_subscriber.</span></span><span class="sig-name descname"><span class="pre">menu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/c_robot_subscriber.html#menu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.c_robot_subscriber.menu" title="Permalink to this definition"></a></dt>
+<dd><p>Menu function that prints the menu containing what the node does, the distance of the robot from the target, and the robot’s average speed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>start</strong> – A variable that is used to print what the node does only once.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Rafael Rabbani.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

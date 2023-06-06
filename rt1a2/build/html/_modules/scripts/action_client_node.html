@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>scripts.action_client_node &mdash; rt1a2 v 1.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            rt1a2
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">rt1a2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">scripts.action_client_node</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for scripts.action_client_node</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: action_client_node</span>
+<span class="sd">   :platform: Unix</span>
+<span class="sd">   :synopsis: Python module for the action client</span>
+<span class="sd">.. moduleauthor:: Arghavan Dalvand</span>
+<span class="sd">This module provides a user interface for sending goals to an action server using the SimpleActionClient. The user can choose to send a target position goal to the server or cancel an ongoing goal.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1">#! /usr/bin/env python3</span>
+
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">PoseStamped</span>
+<span class="kn">import</span> <span class="nn">actionlib</span>
+<span class="kn">import</span> <span class="nn">actionlib.msg</span>
+<span class="kn">import</span> <span class="nn">assignment_2_2022.msg</span>
+<span class="kn">from</span> <span class="nn">std_srvs.srv</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+
+
+
+<div class="viewcode-block" id="UI"><a class="viewcode-back" href="../../index.html#scripts.action_client_node.UI">[docs]</a><span class="k">def</span> <span class="nf">UI</span><span class="p">():</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	Display a user interface to prompt the user for input.</span>
+<span class="sd">	   Options:</span>
+<span class="sd">		1:Target pos</span>
+<span class="sd">		2:Cancel</span>
+<span class="sd">    Args:</span>
+<span class="sd">        None.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;clear&#39;</span><span class="p">)</span>  
+	<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;**            UI Controller                **</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+	<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1:Target pos</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+	<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2:Cancel</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>   
+
+	<span class="n">input_user</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Select your operation: &quot;</span><span class="p">)</span>
+    
+	<span class="c1"># Check which number has been chosen</span>
+	<span class="k">if</span>   <span class="p">(</span><span class="n">input_user</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">):</span>
+		<span class="n">user_goal</span><span class="p">()</span>
+
+	<span class="k">elif</span> <span class="p">(</span><span class="n">input_user</span> <span class="o">==</span> <span class="s2">&quot;2&quot;</span><span class="p">):</span>
+		<span class="n">cancel</span><span class="p">()</span> 
+
+	<span class="k">else</span><span class="p">:</span>
+		<span class="n">wrong_input</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="user_goal"><a class="viewcode-back" href="../../index.html#scripts.action_client_node.user_goal">[docs]</a><span class="k">def</span> <span class="nf">user_goal</span><span class="p">():</span>
+
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Send a goal to the action server with the specified position.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        None.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">user_goal_x</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> enter the X pos: &quot;</span><span class="p">)</span>
+    <span class="n">user_goal_y</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot; enter the Y pos: &quot;</span><span class="p">)</span>
+    <span class="n">user_goal_x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">user_goal_x</span><span class="p">)</span>
+    <span class="n">user_goal_y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">user_goal_y</span><span class="p">)</span>
+    <span class="c1"># print(f&#39;\nYou entered position (X,Y): ({user_goal_x},{user_goal_y}) &#39;)</span>
+   
+ 
+  
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">The action server connection is pending&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Waits until the action server has started up and started</span>
+    <span class="c1"># listening for goals.</span>
+    <span class="n">action_client</span><span class="o">.</span><span class="n">wait_for_server</span><span class="p">()</span>
+
+
+
+
+    <span class="n">des_goal</span> <span class="o">=</span> <span class="n">PoseStamped</span><span class="p">()</span>
+    <span class="n">des_goal</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">user_goal_x</span>
+    <span class="n">des_goal</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">user_goal_y</span>
+
+    <span class="c1"># Creates a custom messagr according to structure of PlanningGoal()</span>
+    <span class="n">des_goal</span> <span class="o">=</span> <span class="n">assignment_2_2022</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">PlanningGoal</span><span class="p">(</span><span class="n">des_goal</span><span class="p">)</span>
+
+    <span class="c1"># Sends the goal to the action server.</span>
+    <span class="n">action_client</span><span class="o">.</span><span class="n">send_goal</span><span class="p">(</span><span class="n">des_goal</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">The goal was sent to the servers&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Sleep for 2 seconds</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># Initialize User Interface</span>
+    <span class="n">UI</span><span class="p">()</span></div>
+      
+
+
+
+<div class="viewcode-block" id="cancel"><a class="viewcode-back" href="../../index.html#scripts.action_client_node.cancel">[docs]</a><span class="k">def</span> <span class="nf">cancel</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Cancel the current goal sent to the action server.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        None.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Used to send cancel requests to servers</span>
+    <span class="n">action_client</span><span class="o">.</span><span class="n">cancel_goal</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Reaching target canceled by the user&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Sleep for 2 seconds</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">UI</span><span class="p">()</span></div>
+
+
+<span class="c1"># Handle the wrong inputs </span>
+<div class="viewcode-block" id="wrong_input"><a class="viewcode-back" href="../../index.html#scripts.action_client_node.wrong_input">[docs]</a><span class="k">def</span> <span class="nf">wrong_input</span><span class="p">():</span>
+
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Display an error message if the user enters an invalid input.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        None.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;input is wrong!!!!&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Sleep for 2 seconds</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">UI</span><span class="p">()</span></div>
+
+
+    
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This block initializes the ROS node, creates a *SimpleActionClient*,</span>
+<span class="sd">    and calls the *UI()* function to start the user interface.</span>
+<span class="sd">    The *rospy.spin()* function keeps the program running until the node is stopped.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Initializes a rospy node so that the SimpleActionClient can</span>
+        <span class="c1"># publish and subscribe over ROS.</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;action_client_node&#39;</span><span class="p">)</span>
+        <span class="n">action_client</span> <span class="o">=</span> <span class="n">actionlib</span><span class="o">.</span><span class="n">SimpleActionClient</span><span class="p">(</span><span class="s1">&#39;/reaching_goal&#39;</span><span class="p">,</span><span class="n">assignment_2_2022</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">PlanningAction</span> <span class="p">)</span>
+        <span class="n">UI</span><span class="p">()</span>
+
+	    <span class="c1"># Spin() simply keeps python from existing until this node is stopped</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">spin</span><span class="p">()</span>
+    <span class="k">except</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ROSInterruptException</span><span class="p">:</span>
+        <span class="c1"># print(&quot;program interrupted before completion&quot;, file=sys.stderr)</span>
+        <span class="k">pass</span>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Rafael Rabbani.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
