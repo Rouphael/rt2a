@@ -1,4 +1,4 @@
-# Research Track Assignment - Peyman Peyvandi Pour, S5573284
+# Research Track Assignment - Ali RabbaniDoost - S5650240
 
 This repository contains the assignments completed for the Research Track 2 course. The assignments are divided into three parts:
 
